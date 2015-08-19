@@ -1,0 +1,108 @@
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>表情</title>
+<link href="css/style.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="jquery-1.8.0.min.js"></script>
+<script>
+$(function(){
+	//页面加载的时候给所有的热点加一个data-image的属性，其实就是index
+	$(".em_nr a").each(function(e){
+		e++;
+		$(this).attr("data-image",e);
+	})
+	//页面点击，关闭弹出图片框
+	$(document).click(function(e){
+			if(e.target.className != $(".com_form p span").attr("class")){
+				$(".em_wrap").fadeOut(500);
+				}
+	})
+	//点击表情按钮，检查关闭图片框
+	$(".emotion").click(function(){
+		if($(".em_wrap").is(":visible")){
+			$(".em_wrap").fadeOut(500);
+		}
+		else{
+			$(".em_wrap").fadeIn(500);
+		}
+	})
+	//热点点击事件，获取当前的图片索引，间接的取到了图片名称(图片命名1-100这样的规则)
+	$(".em_nr a").click(function(){
+			var data_image = $(this).data("image");
+			$("#saytext").val($("#saytext").val()+ "[" + this.title + "]");
+			$("#show").append("<img src='face/"+data_image+".gif'>");
+			if($("#show").html() != ""){
+				$("#show").css("padding","2px 8px");
+			}else{
+				$("#show").css("padding","0px");
+			}
+	});
+	
+	//文本框change事件，右边同步预览，可以用angularjs
+	$('#saytext').bind('input propertychange', function () {
+		var str =$("#saytext").val();
+		$("#show").html(replace_img(str));
+		if($("#show").html() != ""){
+			$("#show").css("padding","2px 8px");
+			}else{
+				$("#show").css("padding","0px");
+				}
+		});	
+	});
+	
+	var emoji_cn=['[微笑]','[撇嘴]','[色]','[发呆]','[得意]','[流泪]','[害羞]','[闭嘴]','[睡]','[大哭]','[尴尬]','[发怒]','[调皮]','[呲牙]','[惊讶]','[难过]','[酷]','[冷汗]','[折磨]','[吐]','[偷笑]','[可爱]','[白眼]','[傲慢]','[饥饿]','[困]','[惊恐]','[流汗]','[憨笑]','[大兵]','[奋斗]','[咒骂]','[疑问]','[嘘]','[晕]','[抓狂]','[衰]','[骷髅]','[敲打]','[再见]','[擦汗]','[抠鼻]','[鼓掌]','[溴大了]','[坏笑]','[左哼哼]','[右哼哼]','[哈欠]','[鄙视]','[委屈]','[快哭了]','[阴险]','[亲亲]','[吓]','[可怜]','[菜刀]','[西瓜]','[啤酒]','[篮球]','[乒乓]','[咖啡]','[饭]','[猪头]','[玫瑰]','[凋谢]','[嘴唇]','[爱心]','[心碎]','[蛋糕]','[闪电]','[炸弹]','[刀]','[足球]','[瓢虫]','[便便]','[月亮]','[太阳]','[礼物]','[拥抱]','[强]','[弱]','[握手]','[胜利]','[抱拳]','[勾引]','[拳头]','[差劲]','[爱你]','[NO]','[YES]','[爱情]','[飞吻]','[跳跳]','[发抖]','[怄火]','[转圈]','[磕头]','[回头]','[跳绳]','[挥手]','[激动]','[街舞]','[献吻]','[左太极]','[右太极]'];
+	//匹配方法
+	function replace_img(str){
+		str = str.replace(/\</g,'&lt;');
+		str = str.replace(/\>/g,'&gt;');
+		str = str.replace(/\n/g,'<br/>');
+		for(var i=0;i<emoji_cn.length;i++){
+			str = str.replace(eval('/\\'+emoji_cn[i]+'/g'),'<img src="face/'+(i+1)+'.gif" border="0" />');	
+		}
+		return str;
+	}
+</script>
+<script>
+//输入字数限制
+$(function(){
+	var limitNum = 600; 
+	var pattern = '您还可以输入' + limitNum + '字'; 
+	$('#count').html(pattern); 
+	$('#saytext').keyup( 
+		function() { 
+				var remain = $(this).val().length; 
+				if (remain > 600) { 
+				pattern = $('字数超过限制，请适当删除部分内容'); 
+				} 
+				else { 
+				var result = limitNum - remain; 
+				pattern = '您还可以输入' + result + '字'; 
+			} 
+			$('#count').html(pattern); 
+			} 
+		); 
+	})
+</script>
+</head>
+<body>
+<div id="main">
+  <div class="right_info">
+    <h4>预览</h4>
+    <div id="show"></div>
+  </div>
+  <div class="comment">
+    <div class="com_form">
+      <textarea class="input" id="saytext" name="saytext"></textarea>
+      <div class="com_info">
+      <p id="count"></p>
+      <p><span class="emotion">表情</span></p>
+      </div>
+      <div class="em_wrap">
+        <div class="em_nr"><a title="微笑"class="" href="javascript:;"></a><a title="撇嘴"  class="" href="javascript:;"></a><a title="色" class="" href="javascript:;"></a><a title="发呆" class="" href="javascript:;"></a><a title="得意" class="" href="javascript:;"></a><a title="流泪" class="" href="javascript:;"></a><a title="害羞" class="" href="javascript:;"></a><a title="闭嘴" class="" href="javascript:;"></a><a title="睡" class="" href="javascript:;"></a><a title="大哭" class="" href="javascript:;"></a><a title="尴尬" class="" href="javascript:;"></a><a title="发怒" class="" href="javascript:;"></a><a title="调皮" class="" href="javascript:;"></a><a title="呲牙" class="" href="javascript:;"></a><a title="惊讶" class="borderRightNone" href="javascript:;"></a><a title="难过" class="" href="javascript:;"></a><a title="酷" class="" href="javascript:;"></a><a title="冷汗" class="" href="javascript:;"></a><a title="折磨" class="" href="javascript:;"></a><a title="吐" class="" href="javascript:;"></a><a title="偷笑" class="" href="javascript:;"></a><a title="可爱" class="" href="javascript:;"></a><a title="白眼" class="" href="javascript:;"></a><a title="傲慢" class="" href="javascript:;"></a><a title="饥饿" class="" href="javascript:;"></a><a title="困" class="" href="javascript:;"></a><a title="惊恐" class="" href="javascript:;"></a><a title="流汗" class="" href="javascript:;"></a><a title="憨笑" class="" href="javascript:;"></a><a title="大兵" class="borderRightNone" href="javascript:;"></a><a title="奋斗" class="" href="javascript:;"></a><a title="咒骂" class="" href="javascript:;"></a><a title="疑问" class="" href="javascript:;"></a><a title="嘘" class="" href="javascript:;"></a><a title="晕" class="" href="javascript:;"></a><a title="抓狂" class="" href="javascript:;"></a><a title="衰" class="" href="javascript:;"></a><a title="骷髅" class="" href="javascript:;"></a><a title="敲打" class="" href="javascript:;"></a><a title="再见" class="" href="javascript:;"></a><a title="擦汗" class="" href="javascript:;"></a><a title="抠鼻" class="" href="javascript:;"></a><a title="鼓掌" class="" href="javascript:;"></a><a title="糗大了" class="" href="javascript:;"></a><a title="坏笑" class="borderRightNone" href="javascript:;"></a><a title="左哼哼" class="" href="javascript:;"></a><a title="右哼哼" class="" href="javascript:;"></a><a title="哈欠" class="" href="javascript:;"></a><a title="鄙视" class="" href="javascript:;"></a><a title="委屈" class="" href="javascript:;"></a><a title="快哭了" class="" href="javascript:;"></a><a title="阴险" class="" href="javascript:;"></a><a title="亲亲" class="" href="javascript:;"></a><a title="吓" class="" href="javascript:;"></a><a title="可怜" class="" href="javascript:;"></a><a title="菜刀" class="" href="javascript:;"></a><a title="西瓜" class="" href="javascript:;"></a><a title="啤酒" class="" href="javascript:;"></a><a title="篮球" class="" href="javascript:;"></a><a title="乒乓" class="borderRightNone" href="javascript:;"></a><a title="咖啡" class="" href="javascript:;"></a><a title="饭" class="" href="javascript:;"></a><a title="猪头" class="" href="javascript:;"></a><a title="玫瑰" class="" href="javascript:;"></a><a title="凋谢" class="" href="javascript:;"></a><a title="嘴唇" class="" href="javascript:;"></a><a title="爱心" class="" href="javascript:;"></a><a title="心碎" class="" href="javascript:;"></a><a title="蛋糕" class="" href="javascript:;"></a><a title="闪电" class="" href="javascript:;"></a><a title="炸弹" class="" href="javascript:;"></a><a title="刀" class="" href="javascript:;"></a><a title="足球" class="" href="javascript:;"></a><a title="瓢虫" class="" href="javascript:;"></a><a title="便便" class="borderRightNone" href="javascript:;"></a><a title="月亮" class="" href="javascript:;"></a><a title="太阳" class="" href="javascript:;"></a><a title="礼物" class="" href="javascript:;"></a><a title="拥抱" class="" href="javascript:;"></a><a title="强" class="" href="javascript:;"></a><a title="弱" class="" href="javascript:;"></a><a title="握手" class="" href="javascript:;"></a><a title="胜利" class="" href="javascript:;"></a><a title="抱拳" class="" href="javascript:;"></a><a title="勾引" class="" href="javascript:;"></a><a title="拳头" class="" href="javascript:;"></a><a title="差劲" class="" href="javascript:;"></a><a title="爱你" class="" href="javascript:;"></a><a title="NO" class="" href="javascript:;"></a><a title="OK" class="borderRightNone" href="javascript:;"></a><a title="爱情" class=" borderBottomNone" href="javascript:;"></a><a title="飞吻" class=" borderBottomNone" href="javascript:;"></a><a title="跳跳" class=" borderBottomNone" href="javascript:;"></a><a title="发抖" class=" borderBottomNone" href="javascript:;"></a><a title="怄火" class=" borderBottomNone" href="javascript:;"></a><a title="转圈" class=" borderBottomNone" href="javascript:;"></a><a title="磕头" class=" borderBottomNone" href="javascript:;"></a><a title="回头" class=" borderBottomNone" href="javascript:;"></a><a title="跳绳" class=" borderBottomNone" href="javascript:;"></a><a title="挥手" class=" borderBottomNone" href="javascript:;"></a><a title="激动" class=" borderBottomNone" href="javascript:;"></a><a title="街舞" class=" borderBottomNone" href="javascript:;"></a><a title="献吻" class=" borderBottomNone" href="javascript:;"></a><a title="左太极" class=" borderBottomNone" href="javascript:;"></a><a title="右太极" class="borderRightNone borderBottomNone" href="javascript:;"></a></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

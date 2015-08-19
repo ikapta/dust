@@ -1,0 +1,59 @@
+#main{ width:98%; margin:30px auto;}
+.comment {
+	width: 70%;
+	float:left;
+	position: relative
+}
+.com_form {
+	width: 100%;
+	position: relative
+}
+.com_form textarea{
+	border:1px solid #ddd; outline:none; padding:10px;
+	border-radius:4px;
+	resize:none;
+	width:100%; height:272px;
+	}
+span.emotion {
+	width: 42px;
+	height: 20px;
+	background: url(../icon.gif) no-repeat 2px 2px;
+	padding-left: 20px;
+	cursor: pointer
+}
+span.emotion:hover {
+	background-position: 2px -28px
+}
+.right_info{width:28%; float:right; border:1px solid #ddd; height:260px; padding:5px;}
+.right_info h4{ background:#eee; border:1px solid #ddd; line-height:32px; margin:0 auto 10px auto; padding:0 10px; font-size:14px; font-weight:normal;}
+#show {
+	background:#3C9; color:#FFF; word-break:break-all;
+	float:left;display:table; vertical-align:top; border-radius:5px; line-height:25px;
+}
+#show img{ display:inline; margin:0px 5px !important;}
+.em_wrap {
+	display:none;
+    position: absolute; left:0;
+    width: 436px;
+    height: 200px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 0 4px rgba(0,0,0,.3);
+    z-index: 2000;
+}
+.em_nr {
+    width: 436px;
+    height: 200px;
+    background: url(../face/icon_bg.png) 0 0 no-repeat;
+}
+.em_nr a{
+	display:block;
+	float:left;
+	width:28px;
+	height:28px; border-right: 1px solid #DFE6F6;
+    border-bottom: 1px solid #DFE6F6;}
+.com_info{ width:100%; overflow:hidden;}
+.com_info p{ float:left;}
+.com_info p#count{ float:right; font-size:13px;}
