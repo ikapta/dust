@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.3.9/angular.min.js"></script>
+	<script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+</head>
+<body ng-app="appDemo">
+	<div class="well">并没有设置热点，可以参照上个例子，此处可以手动输入表情代码([微笑])<a href="/index.html">初级版本</a></div>
+	
+<div ng-controller="EmojiDemo">
+	<textarea name="" id="" cols="30" rows="10" ng-model="emojStr"></textarea>
+	<input type="text" >
+	<div id="replaceStr"></div>
+	{{$scope.targetStr}}
+</div>
+  
+	
+	<script>
+		
+		var _modul=angular.module('appDemo',[]);
+		_modul.controller('EmojiDemo',function($scope){
+			$scope.emojStr="look here[微笑][微笑][微笑][微笑]";
+			$scope.targetStr="";
+			var watch=$scope.$watch('emojStr',function(newValue,oldValue){
+				$.each(_emoji,function(i,value){
+					if(newValue.indexOf(value.emojCode)>=0){
+						newValue=newValue.replace(eval('/\\'+value.emojCode+'/g'),'<img src="face/'+value.target+'"/>');	
+					}
+				});
+				$scope.targetStr=newValue;
+				jQuery('#replaceStr').html(newValue);
+			});
+
+		/* 把上次的对象重新定义成对应的数据对象 */
+		// createEmojiObj()==>_emoji
+		var _emoji=[{"emojCode":"[微笑]","target":"1.gif"},{"emojCode":"[撇嘴]","target":"2.gif"},{"emojCode":"[色]","target":"3.gif"},{"emojCode":"[发呆]","target":"4.gif"},{"emojCode":"[得意]","target":"5.gif"},{"emojCode":"[流泪]","target":"6.gif"},{"emojCode":"[害羞]","target":"7.gif"},{"emojCode":"[闭嘴]","target":"8.gif"},{"emojCode":"[睡]","target":"9.gif"},{"emojCode":"[大哭]","target":"10.gif"},{"emojCode":"[尴尬]","target":"11.gif"},{"emojCode":"[发怒]","target":"12.gif"},{"emojCode":"[调皮]","target":"13.gif"},{"emojCode":"[呲牙]","target":"14.gif"},{"emojCode":"[惊讶]","target":"15.gif"},{"emojCode":"[难过]","target":"16.gif"},{"emojCode":"[酷]","target":"17.gif"},{"emojCode":"[冷汗]","target":"18.gif"},{"emojCode":"[折磨]","target":"19.gif"},{"emojCode":"[吐]","target":"20.gif"},{"emojCode":"[偷笑]","target":"21.gif"},{"emojCode":"[可爱]","target":"22.gif"},{"emojCode":"[白眼]","target":"23.gif"},{"emojCode":"[傲慢]","target":"24.gif"},{"emojCode":"[饥饿]","target":"25.gif"},{"emojCode":"[困]","target":"26.gif"},{"emojCode":"[惊恐]","target":"27.gif"},{"emojCode":"[流汗]","target":"28.gif"},{"emojCode":"[憨笑]","target":"29.gif"},{"emojCode":"[大兵]","target":"30.gif"},{"emojCode":"[奋斗]","target":"31.gif"},{"emojCode":"[咒骂]","target":"32.gif"},{"emojCode":"[疑问]","target":"33.gif"},{"emojCode":"[嘘]","target":"34.gif"},{"emojCode":"[晕]","target":"35.gif"},{"emojCode":"[抓狂]","target":"36.gif"},{"emojCode":"[衰]","target":"37.gif"},{"emojCode":"[骷髅]","target":"38.gif"},{"emojCode":"[敲打]","target":"39.gif"},{"emojCode":"[再见]","target":"40.gif"},{"emojCode":"[擦汗]","target":"41.gif"},{"emojCode":"[抠鼻]","target":"42.gif"},{"emojCode":"[鼓掌]","target":"43.gif"},{"emojCode":"[溴大了]","target":"44.gif"},{"emojCode":"[坏笑]","target":"45.gif"},{"emojCode":"[左哼哼]","target":"46.gif"},{"emojCode":"[右哼哼]","target":"47.gif"},{"emojCode":"[哈欠]","target":"48.gif"},{"emojCode":"[鄙视]","target":"49.gif"},{"emojCode":"[委屈]","target":"50.gif"},{"emojCode":"[快哭了]","target":"51.gif"},{"emojCode":"[阴险]","target":"52.gif"},{"emojCode":"[亲亲]","target":"53.gif"},{"emojCode":"[吓]","target":"54.gif"},{"emojCode":"[可怜]","target":"55.gif"},{"emojCode":"[菜刀]","target":"56.gif"},{"emojCode":"[西瓜]","target":"57.gif"},{"emojCode":"[啤酒]","target":"58.gif"},{"emojCode":"[篮球]","target":"59.gif"},{"emojCode":"[乒乓]","target":"60.gif"},{"emojCode":"[咖啡]","target":"61.gif"},{"emojCode":"[饭]","target":"62.gif"},{"emojCode":"[猪头]","target":"63.gif"},{"emojCode":"[玫瑰]","target":"64.gif"},{"emojCode":"[凋谢]","target":"65.gif"},{"emojCode":"[嘴唇]","target":"66.gif"},{"emojCode":"[爱心]","target":"67.gif"},{"emojCode":"[心碎]","target":"68.gif"},{"emojCode":"[蛋糕]","target":"69.gif"},{"emojCode":"[闪电]","target":"70.gif"},{"emojCode":"[炸弹]","target":"71.gif"},{"emojCode":"[刀]","target":"72.gif"},{"emojCode":"[足球]","target":"73.gif"},{"emojCode":"[瓢虫]","target":"74.gif"},{"emojCode":"[便便]","target":"75.gif"},{"emojCode":"[月亮]","target":"76.gif"},{"emojCode":"[太阳]","target":"77.gif"},{"emojCode":"[礼物]","target":"78.gif"},{"emojCode":"[拥抱]","target":"79.gif"},{"emojCode":"[强]","target":"80.gif"},{"emojCode":"[弱]","target":"81.gif"},{"emojCode":"[握手]","target":"82.gif"},{"emojCode":"[胜利]","target":"83.gif"},{"emojCode":"[抱拳]","target":"84.gif"},{"emojCode":"[勾引]","target":"85.gif"},{"emojCode":"[拳头]","target":"86.gif"},{"emojCode":"[差劲]","target":"87.gif"},{"emojCode":"[爱你]","target":"88.gif"},{"emojCode":"[NO]","target":"89.gif"},{"emojCode":"[YES]","target":"90.gif"},{"emojCode":"[爱情]","target":"91.gif"},{"emojCode":"[飞吻]","target":"92.gif"},{"emojCode":"[跳跳]","target":"93.gif"},{"emojCode":"[发抖]","target":"94.gif"},{"emojCode":"[怄火]","target":"95.gif"},{"emojCode":"[转圈]","target":"96.gif"},{"emojCode":"[磕头]","target":"97.gif"},{"emojCode":"[回头]","target":"98.gif"},{"emojCode":"[跳绳]","target":"99.gif"},{"emojCode":"[挥手]","target":"100.gif"},{"emojCode":"[激动]","target":"101.gif"},{"emojCode":"[街舞]","target":"102.gif"},{"emojCode":"[献吻]","target":"103.gif"},{"emojCode":"[左太极]","target":"104.gif"},{"emojCode":"[右太极]","target":"105.gif"}];
+		
+		function createEmojiObj(){
+				var emoji_=[];
+				var emoji_cn1=['[微笑]','[撇嘴]','[色]','[发呆]','[得意]','[流泪]','[害羞]','[闭嘴]','[睡]','[大哭]','[尴尬]','[发怒]','[调皮]','[呲牙]','[惊讶]','[难过]','[酷]','[冷汗]','[折磨]','[吐]','[偷笑]','[可爱]','[白眼]','[傲慢]','[饥饿]','[困]','[惊恐]','[流汗]','[憨笑]','[大兵]','[奋斗]','[咒骂]','[疑问]','[嘘]','[晕]','[抓狂]','[衰]','[骷髅]','[敲打]','[再见]','[擦汗]','[抠鼻]','[鼓掌]','[溴大了]','[坏笑]','[左哼哼]','[右哼哼]','[哈欠]','[鄙视]','[委屈]','[快哭了]','[阴险]','[亲亲]','[吓]','[可怜]','[菜刀]','[西瓜]','[啤酒]','[篮球]','[乒乓]','[咖啡]','[饭]','[猪头]','[玫瑰]','[凋谢]','[嘴唇]','[爱心]','[心碎]','[蛋糕]','[闪电]','[炸弹]','[刀]','[足球]','[瓢虫]','[便便]','[月亮]','[太阳]','[礼物]','[拥抱]','[强]','[弱]','[握手]','[胜利]','[抱拳]','[勾引]','[拳头]','[差劲]','[爱你]','[NO]','[YES]','[爱情]','[飞吻]','[跳跳]','[发抖]','[怄火]','[转圈]','[磕头]','[回头]','[跳绳]','[挥手]','[激动]','[街舞]','[献吻]','[左太极]','[右太极]'];
+				$.each(emoji_cn1,function(i){
+					j=i+1;
+					emoji_.push({emojCode:emoji_cn1[i],target:j+'.gif'});
+				})
+				//document.write(JSON.stringify(emoji_))
+				return emoji_;
+			}
+		}) ;
+		
+	</script>
+	
+</body>
+</html>
