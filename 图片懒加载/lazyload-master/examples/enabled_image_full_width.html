@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta charset="utf-8">
+  <title>Lazy Load Enabled</title>
+
+
+  <style type="text/css">
+    .lazy {
+      width:100%;height:0;padding-top:75%; /* 574/765 ~= 75% */
+      margin-bottom: 10px;
+      background-size: 100%;
+    }
+  </style>
+
+</head>
+
+<body>
+
+   
+ 
+
+  <div id="container">
+    <div class="lazy img-responsive" data-original="img/bmw_m1_hood.jpg" alt="BMW M1 Hood"></div>
+    <div class="lazy img-responsive" data-original="img/bmw_m1_side.jpg" alt="BMW M1 Side"></div>
+    <div class="lazy img-responsive" data-original="img/viper_1.jpg" alt="Viper 1"></div>
+    <div class="lazy img-responsive" data-original="img/viper_corner.jpg" alt="Viper Corner"></div>
+    <div class="lazy img-responsive" data-original="img/bmw_m3_gt.jpg" alt="BMW M3 GT"></div>
+    <div class="lazy img-responsive" data-original="img/corvette_pitstop.jpg" alt="Corvette Pitstop"></div>      
+  </div>
+  
+  
+
+   <script src="http://webmap2.map.bdimg.com/yyfm/jQuery_1.x/1.10.2/js/jQuery_1.x.min.js"></script>
+  <!--<script src="http://webmap2.map.bdimg.com/yyfm/zepto_default/1.0/js/zepto_default.min.js"></script>-->
+  <script src="../lazyload.js"></script>
+
+  <script type="text/javascript" charset="utf-8">
+  $(function() {
+     $("div.lazy").lazyload();
+  });
+  </script>
+</body>
+</html>
