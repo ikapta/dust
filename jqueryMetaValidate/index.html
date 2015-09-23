@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery Meta Validate</title>
+	<link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+	<script src="http://cdn.bootcss.com/jquery/3.0.0-alpha1/jquery.min.js"></script>
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="js/jquery.validate.js"></script>
+	<script src="js/jquery.metadata.js"></script>
+</head>
+<body class="container">
+	<form action="" id="myform">
+	<div style="margin-top:50px"></div>
+	<div class="input-group">
+  		<span class="input-group-addon" id="sizing-addon2">@</span>
+  		<input type="text" class="form-control" name="Username" placeholder="Username" aria-describedby="sizing-addon2">
+	</div>
+	<p></p>
+	<div class="input-group">
+  		<span class="input-group-addon" id="sizing-addon1">@</span>
+  		<input type="password" class="form-control" name="password" id="password" placeholder="Password" aria-describedby="sizing-addon1">
+	</div>
+	<p></p>
+	<div class="input-group">
+  		<span class="input-group-addon" id="sizing-addon3">@</span>
+  		<input type="password" class="form-control" name="ConfirmPassword" placeholder="ConfirmPassword" aria-describedby="sizing-addon3">
+	</div>
+	<p></p>
+	<div class="input-group">
+  		<span class="input-group-addon" id="sizing-addon4">@</span>
+  		<input type="Hospital" class="form-control" placeholder="Hospital" aria-describedby="sizing-addon4" validate="{required:true,maxlength:2,messages:{required:'请输入视频标题。',maxlength:'您输入的标题过长。'}}">
+	</div>
+	<p></p>
+	<div id="showEmail"></div>
+	<div class="input-group">
+  		<span class="input-group-addon" id="sizing-addon5">@</span>
+  		<input type="Email" class="form-control" name="Email" placeholder="Email" aria-describedby="sizing-addon5">
+	</div><p></p>
+	<button  class="btn btn-success" type="submit">提交</button>
+	<div id="form1Error"></div>
+</form>
+
+<form action="" id="form2">
+	<div class="input-group">
+  		<span class="input-group-addon" id="sizing-addon6">@</span>
+  		<input type="Email" class="form-control" name="Email" placeholder="Email" aria-describedby="sizing-addon6" validate="{required:true,email:true,messages:{required:'请输入视频标题。',maxlength:'输入正确的邮箱。'}}">
+	</div>
+	<p></p>
+	<div class="input-group">
+  		<span class="input-group-addon" id="sizing-addon7">@</span>
+  		<input type="password" class="form-control" name="password"  placeholder="Email" aria-describedby="sizing-addon7" validate="{required:true,maxlength:2,messages:{required:'请输入视频标题。',maxlength:'您输入的标题过长。'}}">
+	</div><p></p>
+	<button  class="btn btn-success" type="submit">提交</button>
+	<ul id="messageBox"></ul>
+</form>
+
+<div>参考：
+	<a href="http://www.runoob.com/jquery/jquery-plugin-validate.html">http://www.runoob.com/jquery/jquery-plugin-validate.html</a>
+	<a href="http://blog.csdn.net/windxxf/article/details/7520340">http://blog.csdn.net/windxxf/article/details/7520340</a>
+</div>
+<script>
+	$(function(){
+		//   扩展验证
+		
+		jQuery.validator.addMethod("pass", function(value, element) {   
+		    var tel = /^(?![^a-zA-Z]+$)(?!\D+$).{6,}$/;
+		    return this.optional(element) || (tel.test(value));
+		}, "密码格式不符");
+
+		$.metadata.setType("attr", "validate");//使用meata方式，不使用都可以
+		
+		
+		
+		
+		$("#form2").validate({
+			errorClass: "myclass", //验证显示的类，默认是error
+			validClass: "valid",
+			errorElement: "span",//验证显示的标签，默认是lable
+			errorLabelContainer: "#messageBox", 
+       		//wrapper: "li",
+		})
+		
+		
+		
+		
+		
+		$("#myform").validate({
+			
+			errorClass: "myclass",
+			validClass: "valid",
+			errorElement: "span",
+			errorPlacement:function(error, element) {   //验证显示的位置
+				    //error.appendTo(element.parent().next());   //统一放在他的父级后面
+					if (element.attr("name") == "Email")    //特殊处理
+							error.insertAfter("#showEmail");
+					else    
+							//error.appendTo("#form1Error");//可以使用各种选择器
+							error.appendTo(element.parent().next()); 
+					},
+					
+			rules:{
+				Username:"required",
+				Email:{
+					required: true,
+    				email: true,
+					remote:{
+						   type:"POST",
+			               url:"valCodeAction", 
+						   dataType: "json",            
+			               data:{
+			                 Email:function(){return $("input[name=Email]").val();}
+			               } 
+					}
+				},
+				 password: {  
+                        required: true,  
+                        pass:true
+                },  
+                 ConfirmPassword: {  
+                        required: true,  
+                        equalTo: "#password"  
+                } 
+			},
+			messages:{
+				Username:"请输入用户名",
+				Email:{
+					required: "请输入Email地址",
+  				    email: "请输入正确的email地址",
+				    remote:"邮箱已被使用"
+				}
+			},
+			submitHandler:function(form){
+				console.log(form.valid()) //true 通过验证
+				//if (!validator.form()) { return false; }
+				//if (!form.valid()) { return false; } 走invalidHandler
+				form.submit();
+			}
+			invalidHandler:function(form){
+				console.log(form.valid()) //false 未通过验证
+				return false;
+			}
+			
+		});
+		
+	})
+	
+</script>
+</body>
+</html>
