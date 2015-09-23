@@ -131,12 +131,10 @@
 				}
 			},
 			submitHandler:function(form){
-				console.log(form.valid()) //true 通过验证
-				//if (!validator.form()) { return false; }
-				//if (!form.valid()) { return false; } 走invalidHandler
 				form.submit();
 			},
 			invalidHandler:function (form, validator) {  //验证不通过回调 
+				console.log(validator.form()); //output: false
                 return false;
 			}
 			
