@@ -136,9 +136,8 @@
 				//if (!form.valid()) { return false; } 走invalidHandler
 				form.submit();
 			},
-			invalidHandler:function(form){
-				console.log(form.valid()) //false 未通过验证
-				return false;
+			invalidHandler:function (form, validator) {  //验证不通过回调 
+                return false;
 			}
 			
 		});
