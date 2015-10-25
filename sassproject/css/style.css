@@ -1,0 +1,16 @@
+.sdf {
+  *zoom: 1; }
+  .sdf:before, .sdf:after {
+    content: "";
+    display: table; }
+  .sdf:after {
+    clear: both; }
+
+/**
+* base class
+*/
+/**
+* base font-size radius and color
+*/
+
+/*# sourceMappingURL=style.css.map */
