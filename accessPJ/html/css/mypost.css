@@ -1,0 +1,105 @@
+@charset "UTF-8";
+body, p {
+  margin: 0; }
+
+.mr5 {
+  margin-right: 5%; }
+
+.ml1 {
+  margin-left: 1%; }
+
+.pull-left {
+  float: left !important; }
+
+.pull-right {
+  float: right !important; }
+
+.clearfix {
+  clear: both; }
+
+.post-banner img, .post-cont .pleft .leftphone, .post-cont .post-step-dir-right img, .post-cont .post-step-dir-left img {
+  display: block;
+  max-width: 100%;
+  height: auto; }
+
+.post-banner img {
+  width: 100%; }
+
+.post-title {
+  text-align: center;
+  padding-top: 52px;
+  padding-bottom: 46px;
+  color: #36aceb; }
+  .post-title span {
+    font-size: 25px;
+    border-bottom: 2px solid #36aceb;
+    padding-bottom: 6px; }
+
+.post-main {
+  padding-left: 15px;
+  padding-right: 15px; }
+
+.post-cont {
+  position: relative; }
+  .post-cont .pleft {
+    float: left;
+    width: 40%; }
+  .post-cont .pright {
+    margin-top: 15%;
+    float: left;
+    width: 54%;
+    color: #9a9a9a; }
+    .post-cont .pright .post-step {
+      font-size: 39px; }
+    .post-cont .pright .post-step-cont {
+      font-size: 20px;
+      color: #36aceb; }
+  .post-cont .post-step-dir-right img, .post-cont .post-step-dir-left img {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    left: 43%;
+    bottom: 0; }
+    @media (min-width: 380px) {
+      .post-cont .post-step-dir-right img, .post-cont .post-step-dir-left img {
+        width: 60px;
+        height: 60px; } }
+  .post-cont .post-step-dir-left img {
+    -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
+    -o-transform: matrix(-1, 0, 0, 1, 0, 0);
+    transform: matrix(-1, 0, 0, 1, 0, 0); }
+
+.post-go {
+  text-align: center;
+  font-size: 2em;
+  padding-top: 50px; }
+  .post-go a {
+    text-decoration: none; }
+  .post-go span {
+    background: url("../images/按钮框.png") no-repeat center top;
+    background-size: contain;
+    padding: 10px 50px;
+    color: #ffffff;
+    margin-top: 20px; }
+
+.post-tips {
+  text-align: center;
+  font-size: 0.6em;
+  color: #333;
+  font-weight: bold;
+  margin-top: 15px; }
+  .post-tips span {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px; }
+
+.post-footer {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  text-align: center; }
+  .post-footer div img {
+    vertical-align: middle;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px; }
+
+/*# sourceMappingURL=mypost.css.map */
