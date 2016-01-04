@@ -3,4 +3,16 @@
 */
 .sdf{
 	@extend %clearfix;
+
 }
+
+@include animate-fadeInDown;
+@include animate-bounceIn;
+@include animate-bounceInLeft;
+@include animate-slideInDown;
+@include animate-slideInLeft;
+@include animate-flipInY;
+@include animate-pulse;
+@include animate-swing;
+@include animate-tada;
+@include animate-lightSpeedIn;
