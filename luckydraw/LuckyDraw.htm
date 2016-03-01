@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <title>Lucky Draw</title>
+    <script src="/content/jquery-1.4.2.min.js"></script>
+    <script src="/content/socket.js"></script>
+    <style>
+         html,body{
+           height:100%;
+           margin: 0;
+           overflow: hidden !important;
+        }
+         .lucky-container {
+             width: 100%;
+             height: 100%;
+             /*//background-color: #202020;*/
+             background-image: url("/content/background.png");
+             background-repeat: repeat;
+         }
+         .lucky-title {
+             color: #d2d2d2;
+             margin: 0;
+             padding: 20px 0 40px 0;
+             font-size: 5em;
+             text-align: center;
+             text-shadow: 2px 1px 1px;
+         }
+
+         .lucky-content {
+             height: 100%;
+             position: relative
+         }
+         .lucky-startContainer,.lucky-endContainer {
+             float: left;
+             width: 50%;
+             cursor: pointer;
+             text-align: center;
+             overflow: hidden;
+         }
+
+         img#lucky-start,img#lucky-end {
+             width: 400px;
+             height: 400px;
+             transition: all .3s;
+         }
+
+         .lucky_scale{
+              transition: all .3s;
+              transform: scale(1.2);
+              width: 440px !important;
+              height: 440px !important;
+              margin-top: -30px;
+         }
+         .clear {
+             clear: both;
+         }
+         .pop-tip {
+             position: absolute;
+             top: 0;
+             left: 50%;
+             transform: translate(-50%, 0);
+         }
+         .tip-text {
+             padding: 10px 20px;
+             color: #333;
+             background-color: white;
+             border-radius: 4px;
+         }
+    </style>
+</head>
+<body>
+    <div class="lucky-container">
+        <h3 class="lucky-title">Lucky <span>Dr</span>aw</h3>
+        <div class="lucky-content">
+            <div class="lucky-startContainer">
+                <img id="lucky-start" src="/content/ipad_start_small.png" alt="lucky-start" />
+            </div>
+            <div class="lucky-endContainer">
+                <img id="lucky-end" src="/content/ipad_end_small.png" alt="lucky-end" />
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    
+</body>
+</html>

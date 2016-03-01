@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Lucky Draw</title>
+    <script src="content/jquery-1.4.2.min.js"></script>
+    <style>
+        html,body{
+           height:100%;
+           margin: 0;
+           overflow: hidden !important;
+        }
+         .lucky-container {
+             width: 100%;
+             height: 100%;
+             /*//background-color: #202020;*/
+             background-image: url("content/background.png");
+             background-repeat: repeat;
+         }
+         .lucky-title {
+             color: #d2d2d2;
+             margin: 0;
+             padding: 20px 0 40px 0;
+             font-size: 5em;
+             text-align: center;
+             text-shadow: 2px 1px 1px;
+         }
+
+         .lucky-content {
+             height: 100%;
+             position: relative
+         }
+         .lucky-startContainer,.lucky-endContainer {
+             float: left;
+             width: 50%;
+             cursor: pointer;
+             transition: all .3s;
+             text-align: center
+         }
+
+         img#lucky-start,img#lucky-end {
+             width: 400px;
+             height: 400px;
+         }
+
+         .lucky_scale{
+              transform: scale(1.2);
+         }
+         .clear {
+             clear: both;
+         }
+    </style>
+</head>
+<body>
+    <div class="lucky-container">
+        <h3 class="lucky-title">Lucky Draw</h3>
+        <div class="lucky-content">
+            <div class="lucky-startContainer">
+                <img id="lucky-start" class="lucky_scale" src="content/ipad_start_big.png" alt="lucky-start" />
+            </div>
+            <div class="lucky-endContainer">
+                <img id="lucky-end" src="content/ipad_end_small.png" alt="lucky-end" />
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    
+    <script>
+        $(function() {
+            var ImageUrl_LuckyStartSmall = "content/ipad_start_small.png",
+                ImageUrl_LuckyStartBig = "content/ipad_start_big.png",
+                ImageUrl_LuckyEndSmall = "content/ipad_end_small.png",
+                ImageUrl_LuckyEndBig = "content/ipad_end_big.png";
+
+            var lucky_start = $('#lucky-start'),
+                lucky_end=$('#lucky-end');
+
+            var flagStartFirst = true, flagEndFirst = true; //防止多次点击事件flag,以及开始和结束状态点击切换
+
+            $(lucky_start).on('click', function () {
+                if (flagStartFirst) {
+                    flagStartFirst = false;
+
+                    
+                    $(lucky_end).prop("src", ImageUrl_LuckyEndBig);
+                    $(lucky_start).prop("src", ImageUrl_LuckyStartSmall);
+                    $(lucky_end).addClass("lucky_scale");
+                    $(lucky_start).removeClass("lucky_scale");
+                    flagEndFirst = true;
+                   
+                }
+               
+            });
+            $(lucky_end).on('click', function () {
+                
+                if (flagEndFirst) {
+                    flagEndFirst = false;
+
+                    $(lucky_start).prop("src", ImageUrl_LuckyStartBig);
+                    $(lucky_end).prop("src", ImageUrl_LuckyEndSmall);
+                    $(lucky_start).addClass("lucky_scale");
+                    $(lucky_end).removeClass("lucky_scale");
+                    flagStartFirst = true;
+                }
+
+            });
+        })
+    </script>
+</body>
+</html>

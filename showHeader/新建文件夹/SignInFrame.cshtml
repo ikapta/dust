@@ -1,0 +1,68 @@
+﻿<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="/Modules/Innocellence.GSK.WeChat.Frontend.Module/Views/SignIn/content/jquery-1.4.2.min.js"></script>
+    <script src="/Modules/Innocellence.GSK.WeChat.Frontend.Module/Views/SignIn/content/screenfull.js"></script>
+
+</head>
+
+    <style>
+        body {
+            padding: 0;margin: 0;
+            position: relative;
+        }
+         #iframepage {
+             transition: all .3s;
+             position: absolute;
+             /*top: 50%;*/
+             left: 50%;
+             transform: translate(-50%, -50%); 
+         }
+    </style>
+<body>
+   
+
+    <frameset>
+        <iframe src="/SignIn/SignInScreenTest?appid=14" id="iframepage" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+    </frameset>
+    <script type="text/javascript" language="javascript">
+            $(function () {
+
+                function resetIframe() {
+                    var screenWidth = $(window).width();
+                    var screenHeight = $(window).height();
+
+                    var frameHeight = screenWidth * 4 / 15;
+                    $('#iframepage').css({
+                        "width": screenWidth,
+                        "height": frameHeight,
+                        "top": screenHeight / 2
+                    });
+                }
+                resetIframe();
+
+                $(window).resize(function (event) {
+                        setTimeout(function () {
+                           
+                        }, 1);
+                        var screenWidth = $(window).width();
+                        var screenHeight = $(window).height();
+
+                        var frameHeight = screenWidth * 4 / 15;
+                        $('#iframepage').css({
+                            "width": screenWidth,
+                            "height": frameHeight,
+                            "top": screenHeight / 2
+                        });
+                });
+                $('iframe').focus();
+                $('html').click(function() {
+                    $('iframe').focus();
+                });
+                //$('iframe').contents().find(".sign-bg")
+                //document.onkeydown = keyevent;
+            })
+        </script>
+</body>
+</html>

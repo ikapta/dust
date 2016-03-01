@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="delaytime.js"></script>
+</head>
+<body>
+	<div class="well">
+		
+		倒计时<span id="timecircle" style="font-size:24px;">6</span>秒后,你想干什么
+
+	</div>
+
+	<script>
+		$(function(){
+			var kapta= $("#timecircle").delaytime();
+
+			$("#timecircle").delaytime({
+				time:$("#timecircle").text(),
+				timeOn:function(t){
+				 	console.log(t)
+				}
+			});
+			
+			kapta.startExec();
+		})
+	</script>
+</body>
+</html>
