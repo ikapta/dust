@@ -1,4 +1,4 @@
-// 载入外挂
+﻿// 载入外挂
 var gulp = require('gulp'),
     Promise = require('es6-promise').Promise; //autoprefixer插件需要，缺少会报错not difine promise
 sass = require('gulp-ruby-sass'),
@@ -17,17 +17,23 @@ sass = require('gulp-ruby-sass'),
 // cssnano = require('gulp-cssnano'),
 
 gulp.task('inject', function() {
-    var target = gulp.src('Janssen/Information.html');
-    var sources = gulp.src(['./dist/**/*.min.js', './dist/**/*.min.css'], {
+    var timestamp = new Date().getTime();
+    var target = gulp.src('Janssen/*.html');
+    var sources = gulp.src(['~/dist/**/*.min.js', '~/dist/**/*.min.css'], {
         read: false
+    })
+        .pipe(rename(function(path) {
+        // path.dirname = "~"+ path.dirname;
+        console.log( path.dirname);
+        path.extname = path.extname +'?v=' +timestamp;
     });
-
     return target.pipe(inject(sources))
         .pipe(gulp.dest('./Janssen'));
-})
+});
 
 // 样式
 gulp.task('sass', function() {
+
     return sass('Janssen/dev/Styles/sass/*.scss', {
             style: 'expanded'
         })
@@ -86,14 +92,14 @@ gulp.task('clean', function() {
 // 预设任务
 gulp.task('default', ['clean'], function() {
     //gulp.start('styles', 'scripts', 'images');
-    gulp.start('sass', 'scripts', 'images');
+    gulp.start('sass', 'scripts', 'images','inject','watch');
 });
 
 // 看手
 gulp.task('watch', function() {
 
     // 看守所有.scss档
-    gulp.watch('src/styles/**/*.scss', ['sass']);
+    gulp.watch('Janssen/dev/Styles/sass/*.scss', ['sass']);
 
     // // 看守所有.js档
     gulp.watch('Janssen/dev/scripts/*.js', ['scripts']);
@@ -102,11 +108,17 @@ gulp.task('watch', function() {
     gulp.watch('Janssen/images/*', ['images']);
 
     // 建立即时重整伺服器
-    var server = livereload();
+    //var server = livereload();
+    //http://feedback.livereload.com/knowledgebase/articles/86180-how-do-i-add-the-script-tag-manually-
 
     // 看守所有位在 dist/  目录下的档案，一旦有更动，便进行重整
     gulp.watch(['dist/**']).on('change', function(file) {
-        server.changed(file.path);
+        gulp.start('inject');
+        //server.changed(file.path);
+    });
+    gulp.watch(['Janssen/**/*.html']).on('change', function(file) {
+        gulp.start('inject');
+        //server.changed(file.path);
     });
 
 });
