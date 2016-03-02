@@ -1,10 +1,13 @@
 {
-  "indent": 2,
-  "white": true,
+  // other settings...
+  // ENVIRONMENTS
+  // "browser": true, // Is in most configs by default
   "node": true,
-  "undef": true,
-  "unused": true,
-  "-W058": true,
-  "-W014": true,
-  "expr": true
+  // others (e.g. yui, mootools, rhino, worker, etc.)
+  "globals": {
+    "$":true,
+    "jquery":false,
+    "angular":false
+    // other explicit global names to exclude
+  }
 }

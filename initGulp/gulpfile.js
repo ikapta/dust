@@ -1,49 +1,47 @@
-﻿// 载入外挂
+// 载入外挂
 var gulp = require('gulp'),
-    Promise = require('es6-promise').Promise; //autoprefixer插件需要，缺少会报错not difine promise
-sass = require('gulp-ruby-sass'),
+    //series = require('stream-series'),  
+
+    Promise = require('es6-promise').Promise, //autoprefixer插件需要，缺少会报错not difine promise
+    //sass = require('gulp-ruby-sass'), 性能不好
+    sass = require('gulp-sass'),
+    sourcemaps = require('gulp-sourcemaps'),
     autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
     jshint = require('gulp-jshint'),
     uglify = require('gulp-uglify'),
     imagemin = require('gulp-imagemin'),
     rename = require('gulp-rename'),
+    cache = require('gulp-cache'),
     clean = require('gulp-clean'),
     concat = require('gulp-concat'),
-    notify = require('gulp-notify'),
-    cache = require('gulp-cache'),
-    livereload = require('gulp-livereload');
-    inject = require('gulp-inject');
-// cssnano = require('gulp-cssnano'),
+    inject = require('gulp-inject'),
+    notify = require('gulp-notify');
 
-gulp.task('inject', function() {
-    var timestamp = new Date().getTime();
-    var target = gulp.src('Janssen/*.html');
-    var sources = gulp.src(['~/dist/**/*.min.js', '~/dist/**/*.min.css'], {
-        read: false
-    })
-        .pipe(rename(function(path) {
-        // path.dirname = "~"+ path.dirname;
-        console.log( path.dirname);
-        path.extname = path.extname +'?v=' +timestamp;
-    });
-    return target.pipe(inject(sources))
-        .pipe(gulp.dest('./Janssen'));
-});
-
-// 样式
+var dist = __dirname + '/dist';
+var timetemp = new Date().getTime();
+var url = '',
+    res = '';
+    
+    //复制静态文件
+gulp.task('staticfile', function() {
+   return gulp.src('src/lib/**').pipe(gulp.dest(dist + "/lib/"));
+})
+    
+    // 样式sass编译
 gulp.task('sass', function() {
 
-    return sass('Janssen/dev/Styles/sass/*.scss', {
-            style: 'expanded'
-        })
+    return gulp.src('src/dev/**/*.scss')
+        .pipe(sourcemaps.init())
+        .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-        .pipe(gulp.dest('dist/assets/css'))
+        .pipe(gulp.dest(dist + "/dev"))
         .pipe(rename({
             suffix: '.min'
         }))
         .pipe(minifycss())
-        .pipe(gulp.dest('dist/assets/css'))
+        .pipe(sourcemaps.write(dist + "/dev"))
+        .pipe(gulp.dest(dist + "/dev"))
         .pipe(notify({
             message: 'Sass task complete'
         }));
@@ -51,34 +49,101 @@ gulp.task('sass', function() {
 
 // 脚本
 gulp.task('scripts', function() {
-    return gulp.src('Janssen/dev/scripts/*.js')
+    return gulp.src('src/dev/scripts/*.js')
         .pipe(jshint('.jshintrc'))
         .pipe(jshint.reporter('default'))
-        .pipe(concat('main.js'))
-        .pipe(gulp.dest('dist/scripts'))
+        .pipe(concat('jsn_main.js'))
+        .pipe(gulp.dest(dist + "/dev/scripts"))
         .pipe(rename({
             suffix: '.min'
         }))
         .pipe(uglify())
-        .pipe(gulp.dest('dist/scripts'))
+        .pipe(gulp.dest(dist + "/dev/scripts"))
         .pipe(notify({
             message: 'Scripts task complete'
         }));
 });
+    
+ //文件注入,由于注入的前提是需要其他文件准备完成，所以流的执行需要依赖其他的方法执行完成 ，而且其他的方法必须要 写 return 返回流  
+gulp.task('inject',['staticfile','sass','scripts'], function() {
+    var target = gulp.src('src/**/*.html');
+    var headerTpl = gulp.src(['src/html_tpl/_header.tpl.html']);
+
+    var lib_cssJs = gulp.src(['dist/**/jquery.min.js', 'dist/**/bootstrap.min.js', 'dist/**/bootstrap.min.css', 'dist/**/font-awesome.min.css'], {
+        read: false
+    });
+    var dev_Js = gulp.src(['dist/dev/**/*.min.js'], {
+        read: false
+    });
+    var dev_css = gulp.src(['dist/dev/**/*.min.css'], {
+        read: false
+    });
+
+    target
+
+    //inject header
+        .pipe(inject(headerTpl, {
+        starttag: '<!-- inject:header:{{ext}} -->',
+        transform: function(filePath, file) {
+            //console.log(filePath);
+            return file.contents.toString('utf8')
+        }
+    }))
+
+    //inject lib cssjs
+    .pipe(inject(lib_cssJs, {
+        starttag: '<!-- inject:headlib:{{ext}} -->',
+        transform: function(filePath, file) {
+            url = '..' + filePath.replace('/dist', '');
+            if (url.indexOf('.css') >= 0) {
+                res = '<link rel="stylesheet" href="' + url + '">';
+            } else {
+                res = '<script src="' + url + '"></script>';
+            }
+            return res;
+        }
+    }))
+
+    //inject dev cssjs
+    .pipe(inject(dev_Js, {
+            starttag: '<!-- inject:headdev:{{ext}} -->',
+            transform: function(filePath, file) {
+                url = '..' + filePath.replace('/dist', '');
+                res = '<script src="' + url+'?v='+timetemp + '"></script>';
+                return res;
+            }
+        }))
+        .pipe(inject(dev_css, {
+            starttag: '<!-- inject:headdev:{{ext}} -->',
+            transform: function(filePath, file) {
+                url = '..' + filePath.replace('/dist', '');
+                res = '<link rel="stylesheet" href="' + url+'?v='+timetemp + '">';
+                return res;
+            }
+        }))
+
+    .pipe(gulp.dest(dist));
+
+});
+
+
 
 // 图片
 gulp.task('images', function() {
-    return gulp.src('Janssen/Images/*')
-        .pipe(cache(imagemin({
+    return gulp.src('src/Images/**')
+        //.pipe(gulp.dest(dist+'/Images'))
+        .pipe(imagemin({
             optimizationLevel: 3,
             progressive: true,
             interlaced: true
-        })))
-        .pipe(gulp.dest('dist/images'))
-        .pipe(notify({
-            message: 'Images task complete'
-        }));
+        }))
+        .pipe(gulp.dest(dist + '/Images'))
+        // .pipe(notify({
+        //     message: 'Images task complete'
+        // }));
 });
+
+
 
 // 清理
 gulp.task('clean', function() {
@@ -89,34 +154,32 @@ gulp.task('clean', function() {
         .pipe(clean());
 });
 
-// 预设任务
+// 预设任务，预先执行clean方法
 gulp.task('default', ['clean'], function() {
-    //gulp.start('styles', 'scripts', 'images');
-    gulp.start('sass', 'scripts', 'images','inject','watch');
+    gulp.start('staticfile', 'scripts', 'images', 'sass', 'inject','watch');
 });
 
 // 看手
 gulp.task('watch', function() {
 
     // 看守所有.scss档
-    gulp.watch('Janssen/dev/Styles/sass/*.scss', ['sass']);
+    gulp.watch('src/dev/**/*.scss', ['sass']);
 
     // // 看守所有.js档
-    gulp.watch('Janssen/dev/scripts/*.js', ['scripts']);
+    gulp.watch('src/dev/scripts/*.js', ['scripts']);
 
     // 看守所有图片档
-    gulp.watch('Janssen/images/*', ['images']);
+    gulp.watch('src/images/*', ['images']);
 
+    //看守所有的静态文件
+    gulp.watch('  src/lib/*', ['staticfile']);
+    
     // 建立即时重整伺服器
     //var server = livereload();
     //http://feedback.livereload.com/knowledgebase/articles/86180-how-do-i-add-the-script-tag-manually-
 
-    // 看守所有位在 dist/  目录下的档案，一旦有更动，便进行重整
-    gulp.watch(['dist/**']).on('change', function(file) {
-        gulp.start('inject');
-        //server.changed(file.path);
-    });
-    gulp.watch(['Janssen/**/*.html']).on('change', function(file) {
+    // 看守所有位在 src/  目录下的档案，一旦有更动，便进行重整
+    gulp.watch(['src/**/*.html']).on('change', function(file) {
         gulp.start('inject');
         //server.changed(file.path);
     });
