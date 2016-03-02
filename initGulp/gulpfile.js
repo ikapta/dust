@@ -17,11 +17,15 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     inject = require('gulp-inject'),
     notify = require('gulp-notify');
+    
+var browserSync = require('browser-sync');//引入模块 参考链接：https://www.browserSync.io/docs/gulp/,https://segmentfault.com/a/1190000003787713
 
 var dist = __dirname + '/dist';
 var timetemp = new Date().getTime();
 var url = '',
     res = '';
+    
+   
     
     //复制静态文件
 gulp.task('staticfile', function() {
@@ -109,7 +113,7 @@ gulp.task('inject',['staticfile','sass','scripts'], function() {
             starttag: '<!-- inject:headdev:{{ext}} -->',
             transform: function(filePath, file) {
                 url = '..' + filePath.replace('/dist', '');
-                res = '<script src="' + url+'?v='+timetemp + '"></script>';
+                res = '<script src="' + url+'?t='+timetemp + '"></script>';
                 return res;
             }
         }))
@@ -117,7 +121,7 @@ gulp.task('inject',['staticfile','sass','scripts'], function() {
             starttag: '<!-- inject:headdev:{{ext}} -->',
             transform: function(filePath, file) {
                 url = '..' + filePath.replace('/dist', '');
-                res = '<link rel="stylesheet" href="' + url+'?v='+timetemp + '">';
+                res = '<link rel="stylesheet" href="' + url+'?t='+timetemp + '">';
                 return res;
             }
         }))
@@ -154,25 +158,22 @@ gulp.task('clean', function() {
         .pipe(clean());
 });
 
-// 预设任务，预先执行clean方法
-gulp.task('default', ['clean'], function() {
-    gulp.start('staticfile', 'scripts', 'images', 'sass', 'inject','watch');
-});
+
 
 // 看手
 gulp.task('watch', function() {
 
     // 看守所有.scss档
-    gulp.watch('src/dev/**/*.scss', ['sass']);
+    gulp.watch('src/dev/**/*.scss', ['sass'],browserSync.reload);
 
     // // 看守所有.js档
-    gulp.watch('src/dev/scripts/*.js', ['scripts']);
+    gulp.watch('src/dev/scripts/*.js', ['scripts'],browserSync.reload);
 
     // 看守所有图片档
-    gulp.watch('src/images/*', ['images']);
+    gulp.watch('src/images/*', ['images'],browserSync.reload);
 
     //看守所有的静态文件
-    gulp.watch('  src/lib/*', ['staticfile']);
+    gulp.watch('  src/lib/*', ['staticfile'],browserSync.reload);
     
     // 建立即时重整伺服器
     //var server = livereload();
@@ -181,7 +182,25 @@ gulp.task('watch', function() {
     // 看守所有位在 src/  目录下的档案，一旦有更动，便进行重整
     gulp.watch(['src/**/*.html']).on('change', function(file) {
         gulp.start('inject');
+        browserSync.reload
         //server.changed(file.path);
     });
 
+  
+});
+
+
+gulp.task('server', function() {
+    browserSync({//调用API
+        files: "**",//监听整个项目
+        server: {
+            baseDir: "./"//监听当前路径
+        }
+    });
+    gulp.start('watch')
+}); 
+
+// 预设任务，预先执行clean方法
+gulp.task('default', ['clean'], function() {
+    gulp.start('staticfile', 'scripts', 'images', 'sass', 'inject','server');
 });
