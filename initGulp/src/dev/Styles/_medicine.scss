@@ -1,0 +1,170 @@
+.eightlist{
+    padding: 0;
+    label,span{
+        display: block;
+    }  
+
+    span{
+        padding: 0 15px;
+    }
+    .eightlist-detail{
+        padding-bottom: 30px;
+        img{
+            width: 100%;
+            height: auto;
+        }
+    }
+    .eightlist-title{
+        padding: 0 15px;
+        color: $blue_deep;
+        font-weight: bold;
+        line-height: 40px;
+        border-bottom: 1px solid #eee;
+    }
+    .eightlist-date{
+        i{
+            margin-right: 5px;
+        }
+        padding: 0 15px;
+        color:$blue_light;
+    }
+    .eightlist-item{
+            margin-bottom: 10px;
+            background-color: #fff;  
+            a{
+                height: 35px;
+                width: 200px;
+                //line-height: 35px;
+                text-align: center;
+                color: #fff;
+                float: right;
+                //margin-right: 15px;
+                text-decoration: none;
+                background-color: $blue_deep;
+                i{
+                    margin-left: 40px;
+                }
+            }  
+    }
+    .eightlist-btn{
+        height: 35px;
+        margin-top: 10px;
+    }
+    
+    
+    
+    .eightlist-rec{
+
+        background-color: #fff;
+        margin-bottom: 40px;
+        .eightlist-rec-head{
+            padding: 0 15px;       
+            color: $blue_deep;
+            font-weight: bold;
+            line-height: 40px;
+            border-bottom: 1px solid #eee;
+            border-left: 4px solid $blue_light;
+        }
+        .eightlist-rec-title{
+            padding: 0 15px;
+            color: $blue_deep;
+            font-weight: bold;
+            line-height: 40px;
+            a{color: $blue_deep;}
+        }
+    }
+}
+/**
+* start pagger
+*/
+nav.listPagger{
+        text-align: center;
+        li a{margin-right: 5px; background-color: #b7b7b7; color: #fff;}
+        li b{float: left; width: 24px; height: 34px; line-height: 26px;margin-right: 5px; color: #b7b7b7;}
+
+        .pagination>.active>a, .pagination>.active>a:hover, .pagination>.active>a:focus, .pagination>.active>span, .pagination>.active>span:hover, .pagination>.active>span:focus
+        {
+            color: #fff;
+            background-color: $blue_light;
+            border-color: $blue_light;
+        }
+
+        .pagination>li>a:hover, .pagination>li>a:focus, .pagination>li>span:hover, .pagination>li>span:focus
+        {
+          background-color: #b7b7b7; color: #fff;  
+        }
+    }
+/**
+* end pagger
+*/
+.fourlist{
+    padding: 0;
+    background-color: $blue_light;
+    color: #fff;
+    a{color: #fff; display: block;}
+    ul{
+        padding: 0 15px;
+        li{
+            position: relative;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            line-height: 25px;
+            border-bottom: 1px solid #eee;
+            &:last-child{
+                border-bottom:none;
+            }
+        }
+    }
+    .pad-l-30{
+        padding-left: 30px;       
+    }
+    .pad-r-20{
+        padding-right: 20px;
+    }
+    .fourlist-date{
+        i{
+            margin-right: 5px;
+        }
+    }
+     
+}
+.twoicon{
+    .fa-book,.fa-file-video-o,.fa-file-image-o,.fa-file-word-o,.fa-file-excel-o{position: absolute; top:11px; left: 0; font-size: 25px;}
+     .fa-angle-double-right{position: absolute; top:11px; right: 0; font-size: 20px;}
+}
+.rank-title{
+    display: block;
+    text-align: center;
+    line-height: 40px;
+    border-bottom: 1px solid #eee;
+    font-size:20px;
+}
+
+.enquiry{
+    padding: 0;
+    color: #fff;
+    margin-top: 10px;
+    //float: right;
+    width: 100%;
+    background-color: $blue_light;
+        .rank-btn{
+        height: 75px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+            a{
+        height: 35px;
+        width: 90%;
+        margin: 0 auto;
+        line-height: 35px;
+        text-align: center;
+        color: #fff;
+        display: block;
+        text-decoration: none;
+        background-color: $blue_deep;
+        i{
+            margin-left: 40px;
+        }
+    }
+    }
+    
+}

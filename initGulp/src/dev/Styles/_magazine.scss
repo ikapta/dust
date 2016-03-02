@@ -1,0 +1,116 @@
+
+@mixin filter-btn($fontcolor,$bgcolor){
+			@extend %transion3;
+			color: $fontcolor;
+		    background-color: $bgcolor;
+		    border:none;
+		    font-size: 16px;
+		    font-weight: bold;
+		    height: 40px;
+		    border-radius:1px;
+		    &:hover{
+				background-color: darken($bgcolor,4%);
+		    }
+		    &:active,&:focus{
+		    	outline: none;
+		    }
+}
+
+.filterWidget{
+		margin-bottom:10px;
+		padding-left:15px;
+		position:relative;
+		>div{
+			position:relative;
+			float:left;
+            &.dropdown{
+                margin-right: 5px;
+                .dropdown-menu{
+                    border-radius: 1px;
+                    border-color: $grey_bd;
+                    width: 100%;
+                }
+            }
+			// .filter-value{
+			// 	margin-right:5px;
+			// }
+		}
+		i{
+		    position: absolute;
+		    top: 50%;
+		    left: 10px;
+		    transform: translateY(-50%);
+		    font-size: 22px;
+		    color:lighten(#333,45%)
+		}
+		.filter-submit{
+			@include filter-btn(#fff,$blue_light);
+		}
+		.filter-reset{
+			@include filter-btn(#fff,#d8d5d0);
+		}
+		.filter-value{
+		    border: 1px solid #e7e7e7;
+			font-size: 16px;
+		    font-weight: bold;
+		    height: 40px;
+		    padding-left: 30px;
+		    border-radius:1px;
+		    outline: none;
+		    outline-offset: 0;
+		    color:lighten(#333,45%);
+			
+		    display: inline-block;
+		    margin-bottom: 0;
+		    font-weight: normal;
+		    vertical-align: middle;
+		    touch-action: manipulation;
+		    background-image: none;
+		    border: 1px solid transparent;
+		    white-space: nowrap;
+		    -webkit-user-select: none;
+		    -moz-user-select: none;
+		    -ms-user-select: none;
+		    user-select: none;
+		}
+}
+
+.jsn-h3{
+		box-sizing: border-box;
+        border-left: 5px solid $blue_light ;
+        margin: 0 0 10px 0;
+        color: $blue_deep;
+        padding: 10px 0 10px 10px;
+        font-size: 22px;
+        font-weight: bold;
+        border-bottom: 1px solid #eee;
+        background-color:#fff;
+}
+.list-widget{
+	position:relative;
+	margin-bottom:10px;
+	h3 {
+		a{
+			position:relative;
+			color: #fff;
+			display: block;
+
+			height: 100%;
+			i{
+				margin-left: 30px; 
+			}
+		}
+	    
+	    position: absolute;
+	    bottom: 0;
+	    left: 0;
+	    width: 100%;
+	    padding: 10px;;
+	    margin:0;
+	    font-size: 18px;
+		text-align: center;
+		background-color:rgba(#333,.5);
+		
+	}
+
+}
