@@ -1,0 +1,33 @@
+{
+  "name": "npm",
+  "version": "1.0.0",
+  "description": "Janssen",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kapta",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "*",
+    "es6-promise": "^3.1.2",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-cache": "^0.4.2",
+    "gulp-clean": "*",
+    "gulp-concat": "*",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-inject": "*",
+    "gulp-jshint": "^2.0.0",
+    "gulp-minify-css": "*",
+    "gulp-notify": "*",
+    "gulp-rename": "*",
+    "gulp-sass": "^2.2.0",
+    "gulp-sourcemaps": "*",
+    "gulp-uglify": "*",
+    "jshint": "^2.9.1"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1"
+  }
+}

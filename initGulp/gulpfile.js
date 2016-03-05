@@ -3,8 +3,8 @@ var gulp = require('gulp'),
     //series = require('stream-series'),  
 
     Promise = require('es6-promise').Promise, //autoprefixer插件需要，缺少会报错not difine promise
-    //sass = require('gulp-ruby-sass'), 性能不好
-    sass = require('gulp-sass'),
+    //sass = require('gulp-ruby-sass'), //性能不好
+    sass = require('gulp-sass'), //基于node-sass 太难装了这个，弄不好就报错
     sourcemaps = require('gulp-sourcemaps'),
     autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
