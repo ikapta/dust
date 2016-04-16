@@ -1,0 +1,79 @@
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; }
+
+/**
+* base font-size radius and color
+*/
+/**
+* base class
+*/
+html {
+  font-size: 62.5%; }
+
+::-moz-selection {
+  background: #c1b38e;
+  text-shadow: none; }
+
+::selection {
+  background: #c1b38e;
+  text-shadow: none; }
+
+a:focus, button:focus {
+  outline: none !important; }
+
+.plr0 {
+  padding-left: 0;
+  padding-right: 0; }
+
+.inputshadow:focus {
+  outline: 0;
+  border-color: red;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6); }
+
+/**
+* base common partial
+*/
+ul, li {
+  list-style: none;
+  padding: 0; }
+
+div.readMore a i, div.readMore a {
+  transition: all 300ms ease; }
+
+.jsnboxflex {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-align-content: flex-start;
+      -ms-flex-line-pack: start;
+          align-content: flex-start; }
+
+div.readMore {
+  clear: both;
+  padding-right: 15px; }
+  div.readMore a {
+    position: relative;
+    background-color: #003366;
+    text-align: center;
+    width: 200px;
+    display: block;
+    padding: 5px 0;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer; }
+    div.readMore a i {
+      position: absolute;
+      top: 7.5px;
+      right: 40px; }
+    div.readMore a:hover {
+      background-color: #019cdc; }
+      div.readMore a:hover i {
+        right: 30px; }
