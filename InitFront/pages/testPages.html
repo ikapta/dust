@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="utf-8" />
+    <meta name="viewport" id="viewport" content="target-densitydpi=device-dpi,width=640, maximum-scale=0.5">
+    <script>
+        document.getElementById('viewport').setAttribute('content', 'target-densitydpi=device-dpi,width=640, maximum-scale=' + window.screen.width / 640);
+    </script>
+    <title>链车金服</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <script src="../resources/js/lib/jquery-1.11.0.min.js"></script>
+    <script src="../resources/js/lib/bootstrap.min.js"></script>
+
+    <!--[if lt IE 9]>
+	<script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>
+	<script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+    <style>
+       #pageContainerId li{
+            float: left;
+        }
+          #pageContainerId li {
+           text-align: center;
+           padding: 20px;
+           list-style: none;
+           background-color: lightblue;
+            }
+       #pageContainerId li a{
+            width: 20px;
+            height:20px;
+            background-color: lightblue;
+        }
+        #pageContainerId li a.active{
+            background-color: darkgrey;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div id="jsview">
+         
+    </div>
+    <div id="pageContainerId">
+        
+    </div>
+   
+</body>
+
+<script src="../resources/js/lib/sea.js"></script>
+<script>
+    seajs.use('/resources/js/manager/version',function(){
+         seajs.use("modules/pages");
+    })
+</script>
+
+</html>

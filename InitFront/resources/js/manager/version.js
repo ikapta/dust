@@ -9,10 +9,12 @@
            'manager/utils':'manager/utils.js?v='+key,
            'manager/ajax':'manager/ajax.js?v='+key,
            'manager/jsviews':'manager/jsviewsFun.js?v='+key,
+           'manager/pages':'manager/pages.js?v='+key,
            
            'template/indextpl':'template/index.tpl.js?v='+key,
            
-           'modules/index':'modules/index.js?v='+key
+           'modules/index':'modules/index.js?v='+key,
+           'modules/pages':'modules/pages.js?v='+key,
         }
     } ;
 

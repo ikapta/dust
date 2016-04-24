@@ -3,7 +3,8 @@ define(function(require, exports, module) {
     var Utils = require('manager/utils'),
         Ajax = require('manager/ajax'),
         Jsviews=require('manager/jsviews'),
-        Indextpl=require('template/indextpl'); 
+        // Indextpl=require('template/indextpl'); 
+        Indextpl=require('template/index'); 
 
     var app = {
         init: function() {
