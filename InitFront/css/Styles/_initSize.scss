@@ -1,0 +1,43 @@
+@charset "utf-8";
+/*reset*/
+*{
+   padding:0;
+   margin:0;
+}
+html{
+   font-size: 62.5%;
+}
+@media screen and (min-width:321px) and (max-width:375px){html{font-size:11px}}
+@media screen and (min-width:376px) and (max-width:414px){html{font-size:12px}}
+@media screen and (min-width:415px){html{font-size:15px}}
+
+body{min-width:320px;max-width: 640px;font-family:Helvetica;word-break:break-all;color: #4d4c4e;margin: 0 auto;}
+
+.iconfont{font-size: 1.6rem;}
+a{text-decoration: none; color:#4d4c4e; cursor: pointer; -webkit-tap-highlight-color:rgba(0,0,0,0); }
+h1,h2,h3,h4,h5,h6{font-size: 1em; font-weight: normal;}
+ul,ol,li{list-style: none;}
+i,em{font-style: normal;}
+input,button{font-size: 1em; font-family:Helvetica; outline: none;}
+input[type="button"],button{border:none;}
+select{font-family:Helvetica; appearance:none; -webkit-appearance:none;}
+input[type="text"],input[type="password"],select,textarea{outline: none;}
+img{max-width: 100%;}
+table {border-collapse:collapse;border-spacing:0}
+input, select{-webkit-appearance: none;appearance: none;outline: none;-webkit-tap-highlight-color: transparent;}
+/* ============================================================
+   flex：定义布局为盒模型
+   flex-v：盒模型垂直布局
+   flex-1：子元素占据剩余的空间
+   flex-align-center：子元素垂直居中
+   flex-pack-center：子元素水平居中
+   flex-pack-justify：子元素两端对齐
+   兼容性：ios 4+、android 2.3+、winphone8+
+   ============================================================ */
+.flex{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}
+.flex-v{-webkit-box-orient:vertical;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}
+.flex-1{-webkit-box-flex:1;-webkit-flex:1;-ms-flex:1;flex:1;}
+.flex-align-center{-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;}
+.flex-pack-center{-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}
+.flex-pack-justify{-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}
+.flex>*{display: block;}
