@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<script src="jquery-1.8.0.min.js"></script>
+    <style>
+         .sum-mouny {
+            color: #967d64;
+            text-align: center;
+            height: 56px;
+            font-size: 24px;
+            padding-bottom: 14px;
+        }
+        /* line 232, ../sass/index.scss */
+        
+         .sum-mouny .numbers {
+            display: inline-block;
+            height: 56px;
+            line-height: 56px;
+        }
+        /* line 238, ../sass/index.scss */
+        
+         .sum-mouny .number-container {
+            display: inline-block;
+            position: relative;
+            width: 56px;
+            height: 56px;
+            overflow: hidden;
+            background-color: #967d64;
+        }
+        /* line 247, ../sass/index.scss */
+        
+         .sum-mouny .number-items {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        /* line 253, ../sass/index.scss */
+        
+         .sum-mouny .number-item {
+            float: left;
+            display: inline-block;
+            font-family: "Impact";
+            font-size: 54px;
+            width: 56px;
+            height: 56px;
+            line-height: 56px;
+            vertical-align: middle;
+            text-align: center;
+            color: #ffffff;
+        }
+        /* line 266, ../sass/index.scss */
+        
+         .sum-mouny .number-container.unit {
+            background-color: translate;
+        }
+        /* line 269, ../sass/index.scss */
+        
+         .sum-mouny .number-container.unit .number-item {
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="sum-mouny">
+    <div id="numbersPannel" class="numbers">
+        
+    </div>
+</div>
+
+
+
+    <script>
+        $(function() {
+            
+            setSumNumber(999999999);
+            /**
+             * 成交金额动画 1、 设置总金额
+             */
+            function setSumNumber(number) {
+                var numberContainerHtml = '' + '<div class="number-container"                                ' + '     data-offset="__NUMBER_OFFSET__" data-isanimate="FALSE"> ' + '  <div class="number-items clearfix">                        ' + '    <span class="number-item">0</span>                       ' + '    <span class="number-item">1</span>                       ' + '    <span class="number-item">2</span>                       ' + '    <span class="number-item">3</span>                       ' + '    <span class="number-item">4</span>                       ' + '    <span class="number-item">5</span>                       ' + '    <span class="number-item">6</span>                       ' + '    <span class="number-item">7</span>                       ' + '    <span class="number-item">8</span>                       ' + '    <span class="number-item">9</span>                       ' + '  </div>                                                     ' + '</div>                                                       ';
+                if (number != undefined && number != null && number != '') {
+                    number = parseInt(number);
+                }
+
+                var numberCharArray = number.toString().split('');
+                var numberCharArrayLength = numberCharArray.length;
+                var outHtml = new Array();
+
+                for (var i = (numberCharArrayLength - 1),index=1,item=1; i > -1; i--,index++) {
+                    var numberOffset = numberCharArray[i];
+                    outHtml.unshift(numberContainerHtml.replace(/__NUMBER_OFFSET__/,
+                        numberOffset));
+                        
+                    if (index %3==0 && outHtml.length == 4*item-1 && numberCharArrayLength >= 3*item+1) {
+                        outHtml.unshift(',');
+                        item++;
+                    }
+                }
+                $('#numbersPannel').html(outHtml.join(''));
+                scrollNumber();
+            }
+            /**
+             * 成交金额动画 2、 启动动画
+             */
+            function scrollNumber() {
+                $('.number-container').each(function(index, element) {
+                    if ($(element).data('isanimate') === 'FALSE') {
+                        var offset = -56 * parseInt($(element).data('offset'));
+                        $(element).children('.number-items').animate({
+                            'top': offset
+                        }, 800, 'swing');
+                    }
+                });
+            }
+        })
+    </script>
+</body>
+
+</html>
