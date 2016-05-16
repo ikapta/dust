@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="utf-8" />
+    <meta name="viewport" id="viewport" content="target-densitydpi=device-dpi,width=640, maximum-scale=0.5">
+    <script>
+        document.getElementById('viewport').setAttribute('content', 'target-densitydpi=device-dpi,width=640, maximum-scale=' + window.screen.width / 640);
+    </script>
+    <title>链车金服</title> 
+    <link rel="stylesheet" type="CSS" href="css/style.css">
+    <link rel="stylesheet" type="css" href="/webapp/css/bootstrap.min.css">
+    <script src="/webapp/js/common/lib/jquery-2.1.4.min.js"></script>
+    <script src="/webapp/js/common/lib/bootstrap.min.js"></script>
+    
+</head>
+
+<body>
+    <!--start art-template-->
+    <div id="jsview">
+        11qweqwe
+    </div>
+    <script id="demo" type="text/html">
+        <h1>{{ title }}</h1> {{ if isPeople }} 这是一个人吗 {{/if}}
+        <ul>
+            {{each list as item index }} {{ if item.city=="杭州" }}
+            <li>
+                <span>杭州人 {{index}}</span>
+                <span>姓名：{{ item.name }}</span>
+                <span>城市：{{ item.city }}</span>
+            </li>
+
+            {{ else if item.city=="北京" }}
+            <li>
+                <span>北京人</span>
+                <span>姓名：{{ item.name }}</span>
+                <span>城市：{{ item.city }}</span>
+            </li>
+            {{else}}
+            <li>
+                <span>上海人 {{index}}</span>
+                <span>姓名：{{ item.name }}</span>
+                <span>城市：{{ item.city }}</span>
+            </li>
+            {{/if}} {{/each}}
+        </ul>
+    </script>
+    <!--end art-template-->
+     <button type="btn" class="btn btn-success" id="test">end art</button>
+    <div id="sodaCont">
+        
+    </div>
+    <script type="text/soda" id="sodaCont_tpl">
+           <div>
+               {{title}}
+           </div>
+           <div soda-if="isPeople">
+               是个人
+           </div>
+         <li soda-repeat="item in peoples">
+          <span>{{item}} : {{item.name}}-{{item.city}}</span> 
+          <span>
+          {{item.isPeople ? "是个人" : "不是人"}}
+          </span>
+          <span soda-rx="{{rx}}%">12</span>
+         </li>
+    </script>
+    
+    
+    <button type="btn" class="btn btn-success" id="test2">end soda</button>
+    
+    <!--Start 分页测试-->
+    <div id="pageCont"></div>
+     <script id="pageCont_tpl" type="text/html">
+        <ul>
+            {{each list as item index }} 
+            <li>
+                <span>杭州人 {{index + item.index}}</span>
+                <span>姓名：{{ item.lon }}</span>
+                <span>城市：{{ item.lat }}</span>
+            </li>
+            {{/each}}
+        </ul>
+    </script>
+    <div id="forPage"></div>
+    <!--End 分页测试-->
+    
+</body>
+<script src="/webapp/js/common/lib/sea.js"></script>
+<script>
+    seajs.use('/webapp/js/common/config/version', function() {
+        seajs.config({
+            base: "/webapp/js/",
+            alias: version(1),
+        }).use("test/test.js?v=1.0");
+    })
+</script>
+
+</html>

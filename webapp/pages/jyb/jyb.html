@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="utf-8" />
+    <meta name="viewport" id="viewport" content="target-densitydpi=device-dpi,width=640, maximum-scale=0.5">
+    <script>
+        document.getElementById('viewport').setAttribute('content', 'target-densitydpi=device-dpi,width=640, maximum-scale=' + window.screen.width / 640);
+    </script>
+    <title>链车金服</title>
+    <link rel="stylesheet" type="CSS" href="css/bootstrap.min.css">    
+    <link rel="stylesheet" type="CSS" href="css/style.css">
+    <script src="/webapp/js/common/lib/jquery-2.1.4.min.js"></script>
+    <script src="/webapp/js/common/lib/bootstrap.min.js"></script>
+    
+</head>
+
+<body>
+    <div id="jsview">
+        11qweqwe
+    </div>
+
+    <script id="demo" type="text/html">
+        <h1>{{ title }}</h1> {{ if isPeople }} 这是一个人吗 {{/if}}
+        <ul>
+            {{each list as item index }} {{ if item.city=="杭州" }}
+            <li>
+                <span>杭州人 {{index}}</span>
+                <span>姓名：{{ item.name }}</span>
+                <span>城市：{{ item.city }}</span>
+            </li>
+
+            {{ else if item.city=="北京" }}
+            <li>
+                <span>北京人</span>
+                <span>姓名：{{ item.name }}</span>
+                <span>城市：{{ item.city }}</span>
+            </li>
+            {{else}}
+            <li>
+                <span>上海人 {{index}}</span>
+                <span>姓名：{{ item.name }}</span>
+                <span>城市：{{ item.city }}</span>
+            </li>
+            {{/if}} {{/each}}
+        </ul>
+    </script>
+    <button type="btn" class="btn btn-success">test</button>
+
+</body>
+<script src="/webapp/js/common/lib/sea.js"></script>
+<script>
+    seajs.use('/webapp/js/common/config/version', function() {
+        seajs.config({
+            base: "/webapp/js/",
+            alias: version(1),
+        }).use("jyb/jyb.js?v=1.0");
+    })
+</script>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="utf-8" />
+    <meta name="viewport" id="viewport" content="target-densitydpi=device-dpi,width=640, maximum-scale=0.5">
+    <script>
+        document.getElementById('viewport').setAttribute('content', 'target-densitydpi=device-dpi,width=640, maximum-scale=' + window.screen.width / 640);
+    </script>
+    <title>链车金服</title>
+    <script src="/webapp/js/common/lib/jquery-2.1.4.min.js"></script>
+</head>
+
+<body>
+    <div id="jsview">
+         11qweqwe
+    </div>
+</body>
+
+<script src="/webapp/js/common/lib/sea.js"></script>
+<script>
+    seajs.use('/webapp/js/common/config/version',function(){
+        seajs.config({
+            base: "/webapp/js/", 
+            alias: version(2),
+        }).use("jyb/index.js");
+    })
+   
+</script>
+
+</html>
