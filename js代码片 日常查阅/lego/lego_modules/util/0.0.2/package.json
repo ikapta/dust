@@ -1,0 +1,25 @@
+{
+  "name": "util",
+  "version": "0.0.2",
+  "description": "util",
+  "keywords": [],
+  "homepage": "",
+  "author": "sampsonwang",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "licenses": "MIT",
+  "lego": {
+    "category": "35",
+    "categoryName": "基础框架",
+    "main": "index.js",
+    "dependencies": {},
+    "devDependencies": {
+      "expect.js": "0.3.1"
+    }
+  }
+}

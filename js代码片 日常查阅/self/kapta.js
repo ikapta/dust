@@ -1,5 +1,19 @@
 (function() {
     var kapta = {
+        
+        //设备判断  
+        device: function () {
+            var ua = navigator.userAgent;
+            var obj={
+                isH5:/(Android|iPhone|iPad|iPod|iOS|Windows Phone)/i.test(ua),//手机
+                isQQ:/\b(V1_AND_SQI?_([\d\.]+))|(.*? QQ\/([\d\.]+))/.test(ua),//手Q
+                isQQPA:/.*? PA QQ\/([\d\.]+)/.test(ua),//手Q公众号（注：仅android下有效，iOS下无法区分是否公众号）
+                isWX:/\bMicroMessenger\/([\d\.]+)/.test(ua),//微信
+                isiOS:/(iPad|iPhone|iPod).*? (IPad)?/.test(ua),//iOS
+                isAndroid:/\bandroid/i.test(ua),//Android
+            };
+            return obj;
+        },
         /**
          * 获取对象类型
          * @param {object} object 对象
