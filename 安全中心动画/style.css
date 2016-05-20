@@ -1,0 +1,379 @@
+/* @update: 2016-3-2 13:39:39 */
+@charset "UTF-8";
+
+.s-sprite,.user-security .level .p-img .secure-scan .scan-bg,.user-security .level .p-img .secure-scan .scan-pie,.user-security .level .p-img .secure-scan .scan-planet1,.user-security .level .p-img .secure-scan .scan-planet2,.user-security .level .p-img .secure-scan .scan-planet3,.user-security .level .p-img .secure-scan .scan-shield,.user-security .level .p-img .secure-scan .scan-star,.user-security .level .p-img .secure-scan-low .scan-bg,.user-security .level .p-img .secure-scan-low .scan-pie,.user-security .level .p-img .secure-scan-low .scan-planet1,.user-security .level .p-img .secure-scan-low .scan-planet2,.user-security .level .p-img .secure-scan-low .scan-planet3,.user-security .level .p-img .secure-scan-low .scan-shield,.user-security .level .p-img .secure-scan-low .scan-star,.user-security .level .p-img .secure-scan-middle .scan-bg,.user-security .level .p-img .secure-scan-middle .scan-pie,.user-security .level .p-img .secure-scan-middle .scan-planet1,.user-security .level .p-img .secure-scan-middle .scan-planet2,.user-security .level .p-img .secure-scan-middle .scan-planet3,.user-security .level .p-img .secure-scan-middle .scan-shield,.user-security .level .p-img .secure-scan-middle .scan-star {
+    background-image: url(secureLeavel.png);
+    background-repeat: no-repeat
+}
+
+body {
+    font-family: arial,"microsoft yahei";
+    background: #f5f5f5
+}
+
+
+.security-center {
+    margin: 30px auto;
+    width: 1200px;
+    border-top: 4px solid #474e5d;
+    background: #fff
+}
+
+.security-center .security-title {
+    border: 1px solid #e4e4e4;
+    border-top: 0;
+    height: 45px;
+    line-height: 45px;
+    background-color: #f9f9f9;
+    padding-left: 25px;
+    color: #a5a5a5;
+    font-size: 14px;
+    border-bottom: none
+}
+
+.security-center .security-title strong {
+    color: #474e5d;
+    font-size: 18px
+}
+
+.security-center .security-title .extra {
+    color: #5e5e5e
+}
+
+.security-center .security-con {
+    border: 1px solid #e4e4e4;
+    min-height: 550px
+}
+
+
+.user-security {
+    padding: 110px 0 150px;
+    background-color: #fff
+}
+
+.user-security .item {
+    padding-left: 45px;
+    width: 305px;
+    position: relative
+}
+
+.user-security .item .name {
+    line-height: 36px;
+    color: #5e5e5e
+}
+
+
+
+.user-security .item .details {
+    color: #a5a5a5;
+    font-size: 14px;
+    line-height: 24px
+}
+
+.user-security .item .icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 30px;
+    height: 36px
+}
+
+
+.user-security .level {
+    float: left;
+    margin-top: -10px;
+    width: 500px;
+    height: 390px
+}
+
+.user-security .level .p-img {
+    text-align: center;
+    height: 320px
+}
+
+.user-security .level .p-img .secure-scan {
+    width: 320px;
+    height: 320px;
+    position: relative;
+    left: 90px;
+    *left: 0;
+    -moz-transition: all 4s ease-in;
+    -o-transition: all 4s ease-in;
+    -webkit-transition: all 4s ease-in;
+    transition: all 4s ease-in
+}
+
+.user-security .level .p-img .secure-scan .scan-wrap {
+    width: 100%;
+    height: 320px;
+    position: absolute;
+    left: 0;
+    top: 0
+}
+
+.user-security .level .p-img .secure-scan .scan-bg {
+    background-position: 0 -720px;
+    -moz-animation: scan-bg 5s 0s linear forwards infinite;
+    -webkit-animation: scan-bg 5s 0s linear forwards infinite;
+    animation: scan-bg 5s 0s linear forwards infinite
+}
+
+@-moz-keyframes scan-bg {
+    100% {
+        -moz-transform: rotate(-360deg);
+        transform: rotate(-360deg)
+    }
+}
+
+@-webkit-keyframes scan-bg {
+    100% {
+        -webkit-transform: rotate(-360deg);
+        transform: rotate(-360deg)
+    }
+}
+
+@keyframes scan-bg {
+    100% {
+        -moz-transform: rotate(-360deg);
+        -ms-transform: rotate(-360deg);
+        -webkit-transform: rotate(-360deg);
+        transform: rotate(-360deg)
+    }
+}
+
+.user-security .level .p-img .secure-scan .scan-star {
+    background-position: 0 -7200px
+}
+
+.user-security .level .p-img .secure-scan .scan-pie {
+    background-position: 0 -1800px;
+    -moz-animation: scan-pie 2s 0s linear forwards infinite;
+    -webkit-animation: scan-pie 2s 0s linear forwards infinite;
+    animation: scan-pie 2s 0s linear forwards infinite
+}
+
+@-moz-keyframes scan-pie {
+    100% {
+        -moz-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@-webkit-keyframes scan-pie {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes scan-pie {
+    100% {
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+.user-security .level .p-img .secure-scan .scan-shield {
+    background-position: 0 -6120px
+}
+
+.user-security .level .p-img .secure-scan .scan-planet1 {
+    background-position: 0 -2880px;
+    -moz-animation: scan-planet1 8s 0s linear forwards infinite;
+    -webkit-animation: scan-planet1 8s 0s linear forwards infinite;
+    animation: scan-planet1 8s 0s linear forwards infinite
+}
+
+@-moz-keyframes scan-planet1 {
+    100% {
+        -moz-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@-webkit-keyframes scan-planet1 {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes scan-planet1 {
+    100% {
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+.user-security .level .p-img .secure-scan .scan-planet2 {
+    background-position: 0 -3960px;
+    -moz-animation: scan-planet2 7s 0s linear forwards infinite;
+    -webkit-animation: scan-planet2 7s 0s linear forwards infinite;
+    animation: scan-planet2 7s 0s linear forwards infinite
+}
+
+@-moz-keyframes scan-planet2 {
+    100% {
+        -moz-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@-webkit-keyframes scan-planet2 {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes scan-planet2 {
+    100% {
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+.user-security .level .p-img .secure-scan .scan-planet3 {
+    background-position: 0 -5040px;
+    -moz-animation: scan-planet3 9s 0s linear forwards infinite;
+    -webkit-animation: scan-planet3 9s 0s linear forwards infinite;
+    animation: scan-planet3 9s 0s linear forwards infinite
+}
+
+@-moz-keyframes scan-planet3 {
+    100% {
+        -moz-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@-webkit-keyframes scan-planet3 {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes scan-planet3 {
+    100% {
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+.user-security .level .p-img .secure-scan .scan-text {
+    text-align: center;
+    line-height: 320px;
+    font-size: 40px;
+    z-index: 1
+}
+
+.user-security .level .p-img .secure-scan .scan-info {
+    z-index: 2;
+    color: #0a9980;
+    margin-top: 234px
+}
+
+.user-security .level .p-img .secure-scan-middle .scan-bg {
+    background-position: 0 0
+}
+
+.user-security .level .p-img .secure-scan-middle .scan-star {
+    background-position: 0 -6480px
+}
+
+.user-security .level .p-img .secure-scan-middle .scan-pie {
+    background-position: 0 -1080px
+}
+
+.user-security .level .p-img .secure-scan-middle .scan-shield {
+    background-position: 0 -5400px
+}
+
+.user-security .level .p-img .secure-scan-middle .scan-planet1 {
+    background-position: 0 -2160px
+}
+
+.user-security .level .p-img .secure-scan-middle .scan-planet2 {
+    background-position: 0 -3240px
+}
+
+.user-security .level .p-img .secure-scan-middle .scan-planet3 {
+    background-position: 0 -4320px
+}
+
+.user-security .level .p-img .secure-scan-middle .scan-info {
+    color: #ff8e0b
+}
+
+.user-security .level .p-img .secure-scan-low .scan-bg {
+    background-position: 0 -360px
+}
+
+.user-security .level .p-img .secure-scan-low .scan-star {
+    background-position: 0 -6840px
+}
+
+.user-security .level .p-img .secure-scan-low .scan-pie {
+    background-position: 0 -1440px
+}
+
+.user-security .level .p-img .secure-scan-low .scan-shield {
+    background-position: 0 -5760px
+}
+
+.user-security .level .p-img .secure-scan-low .scan-planet1 {
+    background-position: 0 -2520px
+}
+
+.user-security .level .p-img .secure-scan-low .scan-planet2 {
+    background-position: 0 -3600px
+}
+
+.user-security .level .p-img .secure-scan-low .scan-planet3 {
+    background-position: 0 -4680px
+}
+
+.user-security .level .p-img .secure-scan-low .scan-info {
+    color: #ffaf84
+}
+
+.user-security .level:hover .p-tips {
+    display: block
+}
+
+.user-security .level .p-tips {
+    padding-top: 20px;
+    position: relative;
+    text-align: center;
+    display: none
+}
+
+.user-security .level .p-tips .arrow {
+    display: block;
+    width: 13px;
+    height: 7px;
+    position: absolute;
+    left: 50%;
+    top: 13px;
+    background-position: 0 -2019px
+}
+
+.user-security .level .p-tips .text {
+    color: #fcae52;
+    border: 1px solid #fcae52;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    line-height: 38px;
+    padding: 12px 15px
+}
