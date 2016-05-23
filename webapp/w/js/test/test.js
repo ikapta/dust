@@ -72,6 +72,7 @@ define(function(require, exports, module) {
             $('#sodaCont').after(sodaRender($('#sodaCont_tpl').html(), response));
         },
 
+        //使用Inno New Page()分页见InitFront项目目录
         //使用laypage分页
         page: function() {
            /**
