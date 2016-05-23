@@ -80,7 +80,7 @@ Page.prototype.getPageHtml = function()
          } 
          else
          {
-             if(this.pageIndex - pageMathIndex < 1)
+             if(this.pageIndex - pageMathIndex <= 1)
              {
                  pageStartIndex = 1;
                  pageEndIndex = this.numericButtonCount;
