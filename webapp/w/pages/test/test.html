@@ -3,15 +3,22 @@
 
 <head lang="en">
     <meta charset="utf-8" />
-    <meta name="viewport" id="viewport" content="target-densitydpi=device-dpi,width=640, maximum-scale=0.5">
+   <!--  <meta name="viewport" id="viewport" content="target-densitydpi=device-dpi,width=640, maximum-scale=0.5">
     <script>
         document.getElementById('viewport').setAttribute('content', 'target-densitydpi=device-dpi,width=640, maximum-scale=' + window.screen.width / 640);
-    </script>
+    </script> -->
+
+      <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=0.5, maximum-scale=1.0, user-scalable=no">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-touch-fullscreen" content="yes">
+      <!-- <meta name="apple-mobile-web-app-status-bar-style" content="black"> -->
+      <meta name="format-detection" content="telephone=no">
+
     <title>链车金服</title> 
     <link rel="stylesheet" type="CSS" href="css/style.css">
-    <link rel="stylesheet" type="css" href="/webapp/css/bootstrap.min.css">
-    <script src="/webapp/js/common/lib/jquery-2.1.4.min.js"></script>
-    <script src="/webapp/js/common/lib/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="css" href="/w/css/bootstrap.min.css">
+    <script src="/w/js/common/lib/jquery-2.1.4.min.js"></script>
+    <script src="/w/js/common/lib/bootstrap.min.js"></script>
     
 </head>
 
@@ -47,8 +54,8 @@
     </script>
     <!--end art-template-->
      <button type="btn" class="btn btn-success" id="test">end art</button>
-    <div id="sodaCont">
-        
+    <div id="linkStopContainer">
+        <a href="/">stopLink</a>
     </div>
     <script type="text/soda" id="sodaCont_tpl">
            <div>
@@ -86,11 +93,11 @@
     <!--End 分页测试-->
     
 </body>
-<script src="/webapp/js/common/lib/sea.js"></script>
+<script src="/w/js/common/lib/sea.js"></script>
 <script>
-    seajs.use('/webapp/js/common/config/version', function() {
+    seajs.use('/w/js/common/config/version', function() {
         seajs.config({
-            base: "/webapp/js/",
+            base: "/w/js/",
             alias: version(1),
         }).use("test/test.js?v=1.0");
     })

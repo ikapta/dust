@@ -13,6 +13,8 @@ html{
 
 body{min-width:320px;max-width: 640px;font-family:Helvetica;word-break:break-all;color: #4d4c4e;margin: 0 auto;}
 
+* {word-wrap: break-word;-webkit-tap-highlight-color: rgba(0,0,0,0);-webkit-tap-highlight-color: transparent;-ms-tap-highlight-color: transparent;}
+
 .iconfont{font-size: 1.6rem;}
 a{text-decoration: none; color:#4d4c4e; cursor: pointer; -webkit-tap-highlight-color:rgba(0,0,0,0); }
 h1,h2,h3,h4,h5,h6{font-size: 1.6rem; font-weight: normal;}

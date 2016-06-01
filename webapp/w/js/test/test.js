@@ -1,8 +1,9 @@
 define(function(require, exports, module) {
-    require('lib/sodarender');
+  
   var laypage= require('lib/laypage');
     var Utils = require('common/utils'),
         Ajax = require('common/ajax'),
+        LinkStop=require('common/linkStop'),
         Atpl = require('lib/art-template');
 
     var app = {
@@ -12,7 +13,16 @@ define(function(require, exports, module) {
             var isRegister = Utils.getParameter("isRegister");
             console.log(isRegister);
             _this.testAjax();
-            _this.testSodaRender();
+
+             new  LinkStop({
+                container:'#linkStopContainer',
+                eventName:'register',
+                callBack:function(link){
+                        alert(link.linkTitle)
+                        alert(link.linkUrl)
+                    }
+                }
+            );
 
             _this.pageSize = 4;
             _this.pageIndex = 1;
@@ -45,32 +55,6 @@ define(function(require, exports, module) {
             $('#jsview').after(Atpl('demo', data));
         },
         
-        //测试sodaRender
-        testSodaRender: function() {
-            var response = {
-                 title: 'TEST',
-                 isPeople: true,
-                peoples: [{
-                    name: '贤心',
-                    city: '杭州',
-                    isPeople: true,
-                }, {
-                    name: '谢亮',
-                    city: '北京',
-                    isPeople: false,
-                }, {
-                    name: '浅浅',
-                    city: '杭州'
-                }, {
-                    name: 'Dem',
-                    city: '北京'
-                }, {
-                    name: 'chao',
-                    city: '上海'
-                }]
-            };
-            $('#sodaCont').after(sodaRender($('#sodaCont_tpl').html(), response));
-        },
 
         //使用Inno New Page()分页见InitFront项目目录
         //使用laypage分页
