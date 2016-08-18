@@ -37,3 +37,25 @@ function autoScroll(obj) {
 $(function() {
     setInterval('autoScroll(".maquee")', 3000);
 })
+
+
+// ways 2
+// 壕主滚动列表构造
+var AutoScroll = function(scrollData) {
+    var _this = this;
+    _this.top = 0;
+    _this.dataList = scrollData.find('dl');
+    _this.singleHeight = _this.dataList.eq(0).height();
+    _this.setScroll = function() {
+        setInterval(function() {
+            _this.top++;
+            if (_this.top <= _this.singleHeight * (_this.dataList.length - 5)) {
+                scrollData.animate({
+                    'top': -_this.top + 'px'
+                }, 1);
+            } else {
+                _this.top = 0;
+            }
+        }, 50)
+    }
+}
