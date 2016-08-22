@@ -1,6 +1,39 @@
-(function() {
+
     var kapta = {
 
+        /**
+         * 获取参数
+         *  window.search = localParam().search
+         *  var s= kapta.localParam();
+         *  if(s.search.parameName)
+         */
+        localParam: function(search, hash) {
+            search = search || window.location.search;
+            hash = hash || window.location.hash;
+            var fn = function(str, reg) {
+                if (str) {
+                    var data = {};
+                    str.replace(reg, function($0, $1, $2, $3) {
+                        data[$1] = $3;
+                    });
+                    return data;
+                }
+            }
+            return {
+                search: fn(search, new RegExp("([^?=&]+)(=([^&]*))?", "g")) || {},
+                hash: fn(hash, new RegExp("([^#=&]+)(=([^&]*))?", "g")) || {}
+            };
+        },
+          /**
+         * 获取URL中的数据
+         */
+        getParameter: function(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null)
+                return unescape(r[2]);
+            return null;
+        },
         // 获取文件扩展名
         // console.log(getFileExtension3(''));                            // ''
         // console.log(getFileExtension3('filename'));                    // ''
@@ -64,16 +97,7 @@
             }
         },
 
-        /**
-         * 获取URL中的数据
-         */
-        getParameter: function(name) {
-            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-            var r = window.location.search.substr(1).match(reg);
-            if (r != null)
-                return unescape(r[2]);
-            return null;
-        },
+      
         /**
          * 银行卡号显示信息
          * 6217***7988
@@ -173,7 +197,7 @@
          *   (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423
          *   (new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18 
          */
-         fmtDate : function(date, fmt) { //author: meizz 
+        fmtDate: function(date, fmt) { //author: meizz 
             var o = {
                 "M+": date.getMonth() + 1, //月份 
                 "d+": date.getDate(), //日 
@@ -453,8 +477,4 @@
                 $('<img>').attr('src', arguments[i]);
             }
         }
-
-
-
-    };
-})();
+    }
